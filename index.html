@@ -26,7 +26,37 @@
         .container { 
             max-width: 1100px; 
             box-shadow: 0 15px 40px rgba(0, 40, 85, 0.1); /* Shadow Biru Tua Lembut */
+            position: relative; /* Penting untuk penempatan siluet */
         }
+
+        /* --- STYLING SILUET GAMBAR STRUKTUR SEBAGAI BACKGROUND --- */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('Goodlife Padel.png'); /* Gambar struktur padel court */
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: 80%; /* Ukuran siluet relatif terhadap container */
+            opacity: 0.05; /* Transparansi sangat rendah untuk efek siluet */
+            z-index: 0; /* Pastikan di belakang semua konten */
+            pointer-events: none; /* Non-interaktif */
+            filter: grayscale(100%) brightness(0) invert(1); /* Efek Siluet Putih */
+        }
+
+        /* Responsive adjustments for the silhouette */
+        @media (max-width: 768px) {
+            .container::before {
+                background-size: 100%;
+                opacity: 0.03; /* Lebih transparan di layar kecil */
+            }
+        }
+        /* --- AKHIR STYLING SILUET --- */
+
+
         h1 { 
             font-family: 'Playfair Display', serif; 
         }
@@ -45,6 +75,8 @@
         .accordion-header {
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
             cursor: pointer;
+            position: relative; /* Penting agar header di atas siluet */
+            z-index: 1; 
         }
         .accordion-header.active {
             background-color: #DAA520;
@@ -59,15 +91,28 @@
             border-bottom: 3px solid #DAA520;
             border-left: 1px solid #eee;
             border-right: 1px solid #eee;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            position: relative; /* Penting agar konten di atas siluet */
+            z-index: 1;
         }
-        .accordion-header.active + .accordion-content {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+        .accordion-content ul {
+             list-style-type: none;
+             padding-left: 0;
+        }
+        .accordion-content ul li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
         }
         .accordion-content ul li::before {
             content: '✓'; /* Menggunakan checkmark */
             color: #DAA520;
-            font-size: 1.2em;
+            font-weight: bold;
+            font-size: 1.1em;
+            position: absolute;
+            left: 0;
+            top: 0;
         }
 
         /* Floating WhatsApp (Diperkecil) */
@@ -131,17 +176,18 @@
     <div class="container mx-auto mt-6 mb-6 p-8 md:p-12 bg-white rounded-xl">
         
         <!-- HEADER & BRANDING -->
-        <header class="text-center pb-8 border-b border-gray-100">
-            <img src="Image/EM-Pro.png" onerror="this.onerror=null; this.src='https://placehold.co/160x100/002855/DAA520?text=LOGO+EM+Pro';" alt="Logo Entitas Maxima Pro" class="mx-auto w-40 h-auto rounded-lg shadow-xl mb-2">
-            <p class="text-xs color-primary font-bold tracking-widest uppercase">ENTITAS MAXIMA Pro</p>
+        <header class="text-center pb-8 border-b border-gray-100 relative z-10">
+            <!-- Peningkatan ukuran logo dari w-40 menjadi w-56 (dan placeholder disesuaikan) -->
+            <img src="Image/EM-Pro.png" onerror="this.onerror=null; this.src='https://placehold.co/224x100/002855/DAA520?text=LOGO+EM+Pro';" alt="Logo Entitas Maxima Pro" class="mx-auto w-56 h-auto rounded-lg shadow-xl mb-2">
+            <p class="text-xs color-primary font-bold tracking-widest uppercase">"THE ANSWER START HERE"</p>
             <h1 class="text-4xl md:text-6xl color-primary font-extrabold mt-2 leading-tight">
                 Mendirikan Kepastian, <span class="text-secondary">Mempercepat Proses</span>
             </h1>
-            <p class="text-lg text-gray-600 mt-2 font-medium">Penanggung Jawab: **GIOVANNI ALVIN JONATHAN**</p>
+            <p class="text-lg text-gray-600 mt-2 font-medium">Penanggung Jawab: <span class="font-bold">GIOVANNI ALVIN JONATHAN</span></p>
         </header>
 
         <!-- RINGKASAN HARGA & PROYEK -->
-        <section class="mt-10 p-6 bg-gray-50 rounded-xl border-l-4 border-secondary shadow-lg">
+        <section class="mt-10 p-6 bg-gray-50 rounded-xl border-l-4 border-secondary shadow-lg relative z-10">
             <h2 class="text-2xl font-bold color-primary mb-5 flex items-center">
                 <i class="fas fa-handshake mr-3 text-secondary"></i> Penawaran Spesial: "GOODLIFE PADEL COURT"
             </h2>
@@ -188,7 +234,7 @@
         </section>
 
         <!-- RINCIAN LINGKUP PEKERJAAN (ACCORDION) -->
-        <section id="scope-detail" class="mt-12">
+        <section id="scope-detail" class="mt-12 relative z-10">
             <h2 class="text-3xl font-bold color-primary mb-6 text-center">
                 <i class="fas fa-chart-bar mr-2 text-secondary"></i> Rincian Teknis & Alokasi Jasa
             </h2>
@@ -196,11 +242,11 @@
             <!-- Struktur -->
             <div class="accordion-item mb-3 rounded-lg overflow-hidden border border-blue-100 shadow-md">
                 <button class="accordion-header flex justify-between items-center w-full bg-blue-50 color-primary p-5 font-semibold text-left" onclick="toggleAccordion('content-struktur')">
-                    <span><i class="fas fa-cube mr-3"></i> **A. Dokumen Struktur PBG**</span>
+                    <span><i class="fas fa-cube mr-3"></i> <span class="font-bold">A. Dokumen Struktur PBG</span></span>
                     <span class="text-secondary font-bold text-lg">Rp. 54.000.000 <i class="fas fa-chevron-down ml-3 text-sm"></i></span>
                 </button>
                 <div class="accordion-content" id="content-struktur">
-                    <ul class="px-8 text-gray-700">
+                    <ul class="text-gray-700">
                         <li>Pengecekan dan perbaikan Gambar Desain Struktur sesuai syarat PBG.</li>
                         <li>Pengecekan Perhitungan Analisa Struktur dan Revisi.</li>
                         <li>Penyusunan Speksifikasi Teknis Struktur.</li>
@@ -212,11 +258,11 @@
             <!-- Arsitektur -->
             <div class="accordion-item mb-3 rounded-lg overflow-hidden border border-blue-100 shadow-md">
                 <button class="accordion-header flex justify-between items-center w-full bg-blue-50 color-primary p-5 font-semibold text-left" onclick="toggleAccordion('content-arsitektur')">
-                    <span><i class="fas fa-palette mr-3"></i> **B. Dokumen Arsitektur PBG**</span>
+                    <span><i class="fas fa-palette mr-3"></i> <span class="font-bold">B. Dokumen Arsitektur PBG</span></span>
                     <span class="text-secondary font-bold text-lg">Rp. 58.000.000 <i class="fas fa-chevron-down ml-3 text-sm"></i></span>
                 </button>
                 <div class="accordion-content" id="content-arsitektur">
-                    <ul class="px-8 text-gray-700">
+                    <ul class="text-gray-700">
                         <li>Pengecekan dan perbaikan Gambar Desain Arsitektur sesuai syarat PBG.</li>
                         <li>Penyusunan Speksifikasi Teknis Arsitektur.</li>
                         <li>Penyediaan Tenaga Ahli (SKA Arsitektur) dan Presentasi Sidang PBG.</li>
@@ -227,11 +273,11 @@
             <!-- MEP -->
             <div class="accordion-item mb-3 rounded-lg overflow-hidden border border-blue-100 shadow-md">
                 <button class="accordion-header flex justify-between items-center w-full bg-blue-50 color-primary p-5 font-semibold text-left" onclick="toggleAccordion('content-mep')">
-                    <span><i class="fas fa-bolt mr-3"></i> **C. Dokumen Mekanikal, Elektrikal, Plumbing (MEP)**</span>
+                    <span><i class="fas fa-bolt mr-3"></i> <span class="font-bold">C. Dokumen Mekanikal, Elektrikal, Plumbing (MEP)</span></span>
                     <span class="text-secondary font-bold text-lg">Rp. 48.000.000 <i class="fas fa-chevron-down ml-3 text-sm"></i></span>
                 </button>
                 <div class="accordion-content" id="content-mep">
-                    <ul class="px-8 text-gray-700">
+                    <ul class="text-gray-700">
                         <li>Pengecekan dan perbaikan Gambar Desain MEP.</li>
                         <li>Pengecekan dan Revisi Perhitungan MEP (Listrik, Air, AC, dll).</li>
                         <li>Penyusunan Speksifikasi Teknis MEP.</li>
@@ -243,14 +289,14 @@
             <!-- Administrasi -->
             <div class="accordion-item mb-3 rounded-lg overflow-hidden shadow-xl">
                 <button class="accordion-header flex justify-between items-center w-full bg-primary text-white p-5 font-bold text-left" onclick="toggleAccordion('content-administrasi')">
-                    <span><i class="fas fa-clipboard-check mr-3"></i> **D. Administrasi & Perizinan Non-PBG (Termasuk dalam Jasa)**</span>
+                    <span><i class="fas fa-clipboard-check mr-3"></i> <span class="font-bold">D. Administrasi & Perizinan Non-PBG (Termasuk dalam Jasa)</span></span>
                     <span><i class="fas fa-check-circle text-secondary"></i></span>
                 </button>
                 <div class="accordion-content bg-blue-50" id="content-administrasi">
-                    <ul class="px-8 text-gray-700">
+                    <ul class="text-gray-700">
                         <li>Koordinasi intensif dengan PUPR & *Upload* Dokumen ke Sistem SIMBG.</li>
-                        <li>Pengurusan **SKL Pajak PBB** (Surat Keterangan Lunas).</li>
-                        <li>Pembuatan **OSS, NIB, SPPL, dan KKPR** (Kesesuaian Kegiatan Pemanfaatan Ruang).</li>
+                        <li>Pengurusan <span class="font-bold">SKL Pajak PBB</span> (Surat Keterangan Lunas).</li>
+                        <li>Pembuatan <span class="font-bold">OSS, NIB, SPPL, dan KKPR</span> (Kesesuaian Kegiatan Pemanfaatan Ruang).</li>
                         <li>Sidang PBG dan Penyerahan Dokumen PBG 1 Set.</li>
                     </ul>
                 </div>
@@ -258,7 +304,7 @@
         </section>
 
         <!-- PEMBAYARAN & REKENING (Diperbarui dengan Formulir) -->
-        <section class="mt-12 p-8 bg-yellow-50 rounded-xl border border-secondary shadow-lg">
+        <section class="mt-12 p-8 bg-yellow-50 rounded-xl border border-secondary shadow-lg relative z-10">
             <h2 class="text-2xl font-bold color-primary mb-6 flex items-center">
                 <i class="fas fa-file-signature mr-3 text-secondary"></i> Prosedur & Administrasi Keuangan
             </h2>
@@ -266,7 +312,7 @@
             <!-- Termin Pembayaran Accordion (Sekarang berisi Form) -->
             <div class="accordion-item mb-5 rounded-lg overflow-hidden shadow-md border border-yellow-300">
                 <button class="accordion-header bg-yellow-100 text-gray-800 p-5 font-semibold text-left w-full" onclick="toggleAccordion('content-termin')">
-                    <i class="fas fa-percent mr-3"></i> **Formulir Bukti Pembayaran Termin (4 Tahap)**
+                    <i class="fas fa-percent mr-3"></i> <span class="font-bold">Formulir Bukti Pembayaran Termin (4 Tahap)</span>
                 </button>
                 <div class="accordion-content bg-white p-4" id="content-termin">
                     <p class="text-sm text-gray-600 mb-4 px-2 italic">Silakan isi formulir di bawah ini dan unggah bukti transfer untuk setiap termin pembayaran. Bukti akan otomatis dikirimkan ke tim Administrasi kami melalui email, dan kwitansi akan dikirimkan ke email klien yang terdaftar.</p>
@@ -412,7 +458,7 @@
                 </div>
             </div>
             
-            <div class="bank-details p-6 bg-white rounded-xl shadow-inner border border-gray-100">
+            <div class="bank-details p-6 bg-white rounded-xl shadow-inner border border-gray-100 relative z-10">
                 <h3 class="text-xl font-bold text-secondary mb-4 border-b pb-2">Rekening Pembayaran Resmi</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     <div class="flex flex-col">
@@ -430,20 +476,20 @@
                 </div>
             </div>
 
-            <div class="notes mt-8 p-4 bg-red-100 border border-red-400 rounded-lg text-sm text-red-800">
+            <div class="notes mt-8 p-4 bg-red-100 border border-red-400 rounded-lg text-sm text-red-800 relative z-10">
                 <p class="font-bold mb-2 flex items-center"><i class="fas fa-exclamation-circle mr-2"></i> Ketentuan Penting (Dibayarkan Klien):</p>
                 <ul class="list-disc ml-5 font-medium">
-                    <li>Harga Jasa di atas **BELUM TERMASUK** Biaya Retribusi PBG yang harus dibayarkan ke Pemerintah Daerah setempat.</li>
-                    <li>Biaya Retribusi Banjar Desa Adat Setempat juga **DITANGGUNG OLEH OWNER** (Klien).</li>
-                    <li>Kegagalan penerbitan SLF karena perubahan konstruksi lapangan pasca-PBG **bukan tanggung jawab kami**.</li>
+                    <li>Harga Jasa di atas <span class="font-bold">BELUM TERMASUK</span> Biaya Retribusi PBG yang harus dibayarkan ke Pemerintah Daerah setempat.</li>
+                    <li>Biaya Retribusi Banjar Desa Adat Setempat juga <span class="font-bold">DITANGGUNG OLEH OWNER</span> (Klien).</li>
+                    <li>Kegagalan penerbitan SLF karena perubahan konstruksi lapangan pasca-PBG <span class="font-bold">bukan tanggung jawab kami</span>.</li>
                 </ul>
             </div>
         </section>
 
 
         <!-- FOOTER -->
-        <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
-            <p>Penawaran Dikeluarkan oleh **ENTITAS MAXIMA Pro** | Hak Cipta &copy; 2025</p>
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm relative z-10">
+            <p>Penawaran Dikeluarkan oleh <span class="font-bold">ENTITAS MAXIMA Pro</span> | Hak Cipta &copy; 2025</p>
             <p class="mt-2 color-primary font-extrabold text-xl font-['Playfair_Display'] tracking-wider">"THE ANSWER STARTS HERE"</p>
         </footer>
     </div>
@@ -455,7 +501,7 @@
             const header = content.previousElementSibling;
             
             // Tutup atau buka elemen yang diklik
-            if (content.style.maxHeight) {
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
                 content.style.maxHeight = null;
                 header.classList.remove('active');
             } else {
@@ -467,8 +513,13 @@
                     }
                 });
 
-                // Buka elemen yang diklik
-                content.style.maxHeight = content.scrollHeight + "px";
+                // Buka elemen yang diklik.
+                content.style.paddingTop = "1rem";
+                content.style.paddingBottom = "1rem";
+                
+                // Tambahkan buffer untuk mengatasi ketidakakuratan scrollHeight di beberapa browser.
+                const buffer = 30;
+                content.style.maxHeight = (content.scrollHeight + buffer) + "px";
                 header.classList.add('active');
             }
         }
