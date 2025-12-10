@@ -1,1 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penawaran Jasa PBG - ENTITAS MAXIMA Pro</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Playfair Display (Mewah) dan Poppins (Modern & Mudah Dibaca) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Skema Warna Khusus yang Lebih Dalam dan Mewah */
+        .color-primary { color: #002855; } /* Navy Tua - Kekuatan */
+        .bg-primary { background-color: #002855; }
+        .bg-secondary { background-color: #DAA520; } /* Gold - Premium */
+        .text-secondary { color: #DAA520; }
+        
+        /* Font dan Desain Umum */
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #f0f3f8; /* Background lebih cerah */
+        }
+        .container { 
+            max-width: 1100px; 
+            box-shadow: 0 15px 40px rgba(0, 40, 85, 0.1); /* Shadow Biru Tua Lembut */
+        }
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+        }
+        
+        /* Tombol CTA */
+        .cta-button { 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            background: linear-gradient(135deg, #DAA520, #B8860B); /* Gradient Emas */
+        }
+        .cta-button:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.6); 
+        }
+        
+        /* Accordion Styling */
+        .accordion-header {
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            cursor: pointer;
+        }
+        .accordion-header.active {
+            background-color: #DAA520;
+            color: #002855; /* Teks Biru Tua di background Emas */
+            font-weight: 700;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            background-color: #ffffff;
+            border-bottom: 3px solid #DAA520;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
+        }
+        .accordion-header.active + .accordion-content {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .accordion-content ul li::before {
+            content: '✓'; /* Menggunakan checkmark */
+            color: #DAA520;
+            font-size: 1.2em;
+        }
 
+        /* Floating WhatsApp (Diperkecil) */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 9999px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            transition: all 0.3s;
+            padding: 12px; /* Diperkecil dari p-4 */
+        }
+        .floating-whatsapp i {
+            font-size: 1.5rem; /* Ikon lebih kecil */
+        }
+        .floating-whatsapp:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+        }
+        .floating-whatsapp span {
+            display: none; /* Sembunyikan teks di mobile/desktop agar hanya ikon */
+        }
+        @media (min-width: 640px) {
+            .floating-whatsapp {
+                padding: 12px 20px;
+            }
+            .floating-whatsapp span {
+                display: inline; /* Tampilkan teks di desktop */
+            }
+        }
+        
+        /* Gaya input file khusus */
+        .custom-file-input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #D1D5DB;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: #4B5563;
+        }
+        .custom-file-input:focus {
+            outline: none;
+            border-color: #DAA520;
+            box-shadow: 0 0 0 1px #DAA520;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <!-- Floating WhatsApp Button (Lebih Kecil) -->
+    <a href="https://wa.me/+6281937881467?text=Halo%20Giovanni%2C%20saya%20tertarik%20dengan%20Penawaran%20PBG%20Goodlife%20Padel%20Court%20sebesar%20Rp.150.000.000." class="floating-whatsapp flex items-center" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="ml-2 font-semibold">Konsultasi Cepat</span>
+    </a>
+
+    <div class="container mx-auto mt-6 mb-6 p-8 md:p-12 bg-white rounded-xl">
+        
+        <!-- HEADER & BRANDING -->
+        <header class="text-center pb-8 border-b border-gray-100">
+            <img src="Images/EM-Pro.png" onerror="this.onerror=null; this.src='https://placehold.co/160x100/002855/DAA520?text=LOGO+EM+Pro';" alt="Logo Entitas Maxima Pro" class="mx-auto w-40 h-auto rounded-lg shadow-xl mb-2">
+            <p class="text-xs color-primary font-bold tracking-widest uppercase">ENTITAS MAXIMA Pro</p>
+            <h1 class="text-4xl md:text-6xl color-primary font-extrabold mt-2 leading-tight">
+                Mendirikan Kepastian, <span class="text-secondary">Mempercepat Proses</span>
+            </h1>
+            <p class="text-lg text-gray-600 mt-2 font-medium">Penanggung Jawab: **GIOVANNI ALVIN JONATHAN**</p>
+        </header>
+
+        <!-- RINGKASAN HARGA & PROYEK -->
+        <section class="mt-10 p-6 bg-gray-50 rounded-xl border-l-4 border-secondary shadow-lg">
+            <h2 class="text-2xl font-bold color-primary mb-5 flex items-center">
+                <i class="fas fa-handshake mr-3 text-secondary"></i> Penawaran Spesial: "GOODLIFE PADEL COURT"
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
+                <div class="p-4 bg-white rounded-xl border border-blue-100 shadow-md">
+                    <p class="text-sm text-gray-500 font-light">Lokasi Proyek</p>
+                    <p class="font-semibold text-xl color-primary">Badung, Bali</p>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-blue-100 shadow-md">
+                    <p class="text-sm text-gray-500 font-light">Luas Bangunan</p>
+                    <p class="font-semibold text-xl color-primary">670 m²</p>
+                </div>
+                <div class="p-4 bg-primary rounded-xl text-white shadow-md">
+                    <p class="text-sm font-light opacity-80">Benefit Khusus</p>
+                    <p class="font-extrabold text-xl text-secondary">Diskon Klien Baru</p>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full rounded-xl overflow-hidden shadow-2xl">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th class="py-4 px-4 text-left font-semibold">Deskripsi Biaya</th>
+                            <th class="py-4 px-4 text-center font-semibold">Harga Awal</th>
+                            <th class="py-4 px-4 text-center font-semibold">Diskon</th>
+                            <th class="py-4 px-4 text-center bg-secondary color-primary font-extrabold">TOTAL AKHIR (IDR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b border-gray-200">
+                            <td class="py-5 px-4 font-semibold color-primary">Biaya Jasa Pengurusan PBG</td>
+                            <td class="py-5 px-4 text-center line-through text-gray-500">Rp. 160.000.000</td>
+                            <td class="py-5 px-4 text-center text-red-600 font-bold">Rp. 10.000.000</td>
+                            <td class="py-5 px-4 text-center bg-secondary text-white font-extrabold text-2xl">Rp. 150.000.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <a href="#scope-detail" class="cta-button text-white font-bold py-4 px-10 rounded-full mt-8 text-center mx-auto block w-full md:w-fit uppercase tracking-wider shadow-xl">
+                Telusuri Detail Layanan Kami <i class="fas fa-arrow-circle-down ml-3"></i>
+            </a>
+        </section>
+
+        <!-- RINCIAN LINGKUP PEKERJAAN (ACCORDION) -->
+        <section id="scope-detail" class="mt-12">
+            <h2 class="text-3xl font-bold color-primary mb-6 text-center">
+                <i class="fas fa-chart-bar mr-2 text-secondary"></i> Rincian Teknis & Alokasi Jasa
+            </h2>
+            
+            <!-- Struktur -->
+            <div class="accordion-item mb-3 rounded-lg overflow-hidden border border-blue-100 shadow-md">
+                <button class="accordion-header flex justify-between items-center w-full bg-blue-50 color-primary p-5 font-semibold text-left" onclick="toggleAccordion('content-struktur')">
+                    <span><i class="fas fa-cube mr-3"></i> **A. Dokumen Struktur PBG**</span>
+                    <span class="text-secondary font-bold text-lg">Rp. 54.000.000 <i class="fas fa-chevron-down ml-3 text-sm"></i></span>
+                </button>
+                <div class="accordion-content" id="content-struktur">
+                    <ul class="px-8 text-gray-700">
+                        <li>Pengecekan dan perbaikan Gambar Desain Struktur sesuai syarat PBG.</li>
+                        <li>Pengecekan Perhitungan Analisa Struktur dan Revisi.</li>
+                        <li>Penyusunan Speksifikasi Teknis Struktur.</li>
+                        <li>Penyediaan Tenaga Ahli (SKA Struktur) dan Presentasi Sidang PBG.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Arsitektur -->
+            <div class="accordion-item mb-3 rounded-lg overflow-hidden border border-blue-100 shadow-md">
+                <button class="accordion-header flex justify-between items-center w-full bg-blue-50 color-primary p-5 font-semibold text-left" onclick="toggleAccordion('content-arsitektur')">
+                    <span><i class="fas fa-palette mr-3"></i> **B. Dokumen Arsitektur PBG**</span>
+                    <span class="text-secondary font-bold text-lg">Rp. 58.000.000 <i class="fas fa-chevron-down ml-3 text-sm"></i></span>
+                </button>
+                <div class="accordion-content" id="content-arsitektur">
+                    <ul class="px-8 text-gray-700">
+                        <li>Pengecekan dan perbaikan Gambar Desain Arsitektur sesuai syarat PBG.</li>
+                        <li>Penyusunan Speksifikasi Teknis Arsitektur.</li>
+                        <li>Penyediaan Tenaga Ahli (SKA Arsitektur) dan Presentasi Sidang PBG.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MEP -->
+            <div class="accordion-item mb-3 rounded-lg overflow-hidden border border-blue-100 shadow-md">
+                <button class="accordion-header flex justify-between items-center w-full bg-blue-50 color-primary p-5 font-semibold text-left" onclick="toggleAccordion('content-mep')">
+                    <span><i class="fas fa-bolt mr-3"></i> **C. Dokumen Mekanikal, Elektrikal, Plumbing (MEP)**</span>
+                    <span class="text-secondary font-bold text-lg">Rp. 48.000.000 <i class="fas fa-chevron-down ml-3 text-sm"></i></span>
+                </button>
+                <div class="accordion-content" id="content-mep">
+                    <ul class="px-8 text-gray-700">
+                        <li>Pengecekan dan perbaikan Gambar Desain MEP.</li>
+                        <li>Pengecekan dan Revisi Perhitungan MEP (Listrik, Air, AC, dll).</li>
+                        <li>Penyusunan Speksifikasi Teknis MEP.</li>
+                        <li>Penyediaan Tenaga Ahli (SKA MEP) dan Presentasi Sidang PBG.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Administrasi -->
+            <div class="accordion-item mb-3 rounded-lg overflow-hidden shadow-xl">
+                <button class="accordion-header flex justify-between items-center w-full bg-primary text-white p-5 font-bold text-left" onclick="toggleAccordion('content-administrasi')">
+                    <span><i class="fas fa-clipboard-check mr-3"></i> **D. Administrasi & Perizinan Non-PBG (Termasuk dalam Jasa)**</span>
+                    <span><i class="fas fa-check-circle text-secondary"></i></span>
+                </button>
+                <div class="accordion-content bg-blue-50" id="content-administrasi">
+                    <ul class="px-8 text-gray-700">
+                        <li>Koordinasi intensif dengan PUPR & *Upload* Dokumen ke Sistem SIMBG.</li>
+                        <li>Pengurusan **SKL Pajak PBB** (Surat Keterangan Lunas).</li>
+                        <li>Pembuatan **OSS, NIB, SPPL, dan KKPR** (Kesesuaian Kegiatan Pemanfaatan Ruang).</li>
+                        <li>Sidang PBG dan Penyerahan Dokumen PBG 1 Set.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PEMBAYARAN & REKENING (Diperbarui dengan Formulir) -->
+        <section class="mt-12 p-8 bg-yellow-50 rounded-xl border border-secondary shadow-lg">
+            <h2 class="text-2xl font-bold color-primary mb-6 flex items-center">
+                <i class="fas fa-file-signature mr-3 text-secondary"></i> Prosedur & Administrasi Keuangan
+            </h2>
+            
+            <!-- Termin Pembayaran Accordion (Sekarang berisi Form) -->
+            <div class="accordion-item mb-5 rounded-lg overflow-hidden shadow-md border border-yellow-300">
+                <button class="accordion-header bg-yellow-100 text-gray-800 p-5 font-semibold text-left w-full" onclick="toggleAccordion('content-termin')">
+                    <i class="fas fa-percent mr-3"></i> **Formulir Bukti Pembayaran Termin (4 Tahap)**
+                </button>
+                <div class="accordion-content bg-white p-4" id="content-termin">
+                    <p class="text-sm text-gray-600 mb-4 px-2 italic">Silakan isi formulir di bawah ini dan unggah bukti transfer untuk setiap termin pembayaran. Bukti akan otomatis dikirimkan ke tim Administrasi kami melalui email, dan kwitansi akan dikirimkan ke email klien yang terdaftar.</p>
+                    
+                    <!-- Form Termin I -->
+                    <form action="https://formspree.io/f/xzznjokg" method="POST" enctype="multipart/form-data" class="bg-gray-50 p-6 rounded-lg shadow-inner mb-6 border-l-4 border-secondary">
+                        <p class="font-extrabold text-xl color-primary mb-3">1. Termin I (30%)</p>
+                        <p class="text-sm text-gray-600 mb-4">Setelah Penandatanganan Surat Perjanjian.</p>
+                        
+                        <!-- Hidden Fields for Tracking -->
+                        <input type="hidden" name="_subject" value="Bukti Pembayaran PBG - Termin I - Goodlife Padel Court">
+                        <input type="hidden" name="Project_Name" value="Goodlife Padel Court">
+                        <input type="hidden" name="Termin_No" value="I (30%)">
+                        
+                        <!-- Client Info & Date -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <div>
+                                <label for="client-name-1" class="block text-xs font-medium text-gray-500">Nama Klien / Perusahaan:</label>
+                                <input type="text" id="client-name-1" name="Nama_Klien" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary" placeholder="Masukkan nama Anda">
+                            </div>
+                            <div>
+                                <label for="client-email-1" class="block text-xs font-medium text-gray-500">Email Klien (Untuk Kwitansi Otomatis):</label>
+                                <input type="email" id="client-email-1" name="Email_Klien" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary" placeholder="email@contoh.com">
+                            </div>
+                            <div>
+                                <label for="date-1" class="block text-xs font-medium text-gray-500">Tanggal Bayar:</label>
+                                <input type="date" id="date-1" name="Tanggal_Bayar" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary">
+                            </div>
+                        </div>
+                        
+                        <!-- Proof Upload -->
+                        <div class="mb-4">
+                            <label for="proof-1" class="block text-xs font-medium text-gray-500">Upload Bukti Transfer (Image/PDF):</label>
+                            <input type="file" id="proof-1" name="Bukti_Transfer" accept="image/*,application/pdf" required class="custom-file-input mt-1">
+                        </div>
+                        
+                        <button type="submit" class="w-full cta-button text-white py-2 rounded-lg font-bold uppercase shadow-lg hover:shadow-xl transition duration-150">
+                            Kirim Bukti Pembayaran Termin I
+                        </button>
+                    </form>
+
+                    <!-- Form Termin II -->
+                    <form action="https://formspree.io/f/xzznjokg" method="POST" enctype="multipart/form-data" class="bg-gray-50 p-6 rounded-lg shadow-inner mb-6 border-l-4 border-secondary">
+                        <p class="font-extrabold text-xl color-primary mb-3">2. Termin II (30%)</p>
+                        <p class="text-sm text-gray-600 mb-4">Setelah *file* di-*Upload* ke SIMBG.</p>
+                        
+                        <input type="hidden" name="_subject" value="Bukti Pembayaran PBG - Termin II - Goodlife Padel Court">
+                        <input type="hidden" name="Project_Name" value="Goodlife Padel Court">
+                        <input type="hidden" name="Termin_No" value="II (30%)">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <div>
+                                <label for="client-name-2" class="block text-xs font-medium text-gray-500">Nama Klien / Perusahaan:</label>
+                                <input type="text" id="client-name-2" name="Nama_Klien" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary" placeholder="Masukkan nama Anda">
+                            </div>
+                            <div>
+                                <label for="client-email-2" class="block text-xs font-medium text-gray-500">Email Klien (Untuk Kwitansi Otomatis):</label>
+                                <input type="email" id="client-email-2" name="Email_Klien" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary" placeholder="email@contoh.com">
+                            </div>
+                            <div>
+                                <label for="date-2" class="block text-xs font-medium text-gray-500">Tanggal Bayar:</label>
+                                <input type="date" id="date-2" name="Tanggal_Bayar" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="proof-2" class="block text-xs font-medium text-gray-500">Upload Bukti Transfer (Image/PDF):</label>
+                            <input type="file" id="proof-2" name="Bukti_Transfer" accept="image/*,application/pdf" required class="custom-file-input mt-1">
+                        </div>
+                        
+                        <button type="submit" class="w-full cta-button text-white py-2 rounded-lg font-bold uppercase shadow-lg hover:shadow-xl transition duration-150">
+                            Kirim Bukti Pembayaran Termin II
+                        </button>
+                    </form>
+
+                    <!-- Form Termin III -->
+                    <form action="https://formspree.io/f/xzznjokg" method="POST" enctype="multipart/form-data" class="bg-gray-50 p-6 rounded-lg shadow-inner mb-6 border-l-4 border-secondary">
+                        <p class="font-extrabold text-xl color-primary mb-3">3. Termin III (30%)</p>
+                        <p class="text-sm text-gray-600 mb-4">Saat diterbitkannya Undangan Sidang Berkas PBG oleh PUPR.</p>
+                        
+                        <input type="hidden" name="_subject" value="Bukti Pembayaran PBG - Termin III - Goodlife Padel Court">
+                        <input type="hidden" name="Project_Name" value="Goodlife Padel Court">
+                        <input type="hidden" name="Termin_No" value="III (30%)">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <div>
+                                <label for="client-name-3" class="block text-xs font-medium text-gray-500">Nama Klien / Perusahaan:</label>
+                                <input type="text" id="client-name-3" name="Nama_Klien" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary" placeholder="Masukkan nama Anda">
+                            </div>
+                            <div>
+                                <label for="client-email-3" class="block text-xs font-medium text-gray-500">Email Klien (Untuk Kwitansi Otomatis):</label>
+                                <input type="email" id="client-email-3" name="Email_Klien" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary" placeholder="email@contoh.com">
+                            </div>
+                            <div>
+                                <label for="date-3" class="block text-xs font-medium text-gray-500">Tanggal Bayar:</label>
+                                <input type="date" id="date-3" name="Tanggal_Bayar" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="proof-3" class="block text-xs font-medium text-gray-500">Upload Bukti Transfer (Image/PDF):</label>
+                            <input type="file" id="proof-3" name="Bukti_Transfer" accept="image/*,application/pdf" required class="custom-file-input mt-1">
+                        </div>
+                        
+                        <button type="submit" class="w-full cta-button text-white py-2 rounded-lg font-bold uppercase shadow-lg hover:shadow-xl transition duration-150">
+                            Kirim Bukti Pembayaran Termin III
+                        </button>
+                    </form>
+
+                    <!-- Form Termin IV -->
+                    <form action="https://formspree.io/f/xzznjokg" method="POST" enctype="multipart/form-data" class="bg-gray-50 p-6 rounded-lg shadow-inner border-l-4 border-secondary">
+                        <p class="font-extrabold text-xl color-primary mb-3">4. Termin IV (10%)</p>
+                        <p class="text-sm text-gray-600 mb-4">Saat Izin PBG diterbitkan (serah terima dokumen).</p>
+                        
+                        <input type="hidden" name="_subject" value="Bukti Pembayaran PBG - Termin IV - Goodlife Padel Court">
+                        <input type="hidden" name="Project_Name" value="Goodlife Padel Court">
+                        <input type="hidden" name="Termin_No" value="IV (10%)">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <div>
+                                <label for="client-name-4" class="block text-xs font-medium text-gray-500">Nama Klien / Perusahaan:</label>
+                                <input type="text" id="client-name-4" name="Nama_Klien" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary" placeholder="Masukkan nama Anda">
+                            </div>
+                            <div>
+                                <label for="client-email-4" class="block text-xs font-medium text-gray-500">Email Klien (Untuk Kwitansi Otomatis):</label>
+                                <input type="email" id="client-email-4" name="Email_Klien" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary" placeholder="email@contoh.com">
+                            </div>
+                            <div>
+                                <label for="date-4" class="block text-xs font-medium text-gray-500">Tanggal Bayar:</label>
+                                <input type="date" id="date-4" name="Tanggal_Bayar" required class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm p-2 text-gray-800 focus:border-secondary focus:ring-secondary">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="proof-4" class="block text-xs font-medium text-gray-500">Upload Bukti Transfer (Image/PDF):</label>
+                            <input type="file" id="proof-4" name="Bukti_Transfer" accept="image/*,application/pdf" required class="custom-file-input mt-1">
+                        </div>
+                        
+                        <button type="submit" class="w-full cta-button text-white py-2 rounded-lg font-bold uppercase shadow-lg hover:shadow-xl transition duration-150">
+                            Kirim Bukti Pembayaran Termin IV
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="bank-details p-6 bg-white rounded-xl shadow-inner border border-gray-100">
+                <h3 class="text-xl font-bold text-secondary mb-4 border-b pb-2">Rekening Pembayaran Resmi</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="flex flex-col">
+                        <p class="text-gray-500 text-sm font-light">BANK</p>
+                        <p class="font-bold text-xl color-primary">BCA</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-gray-500 text-sm font-light">NOMOR REKENING</p>
+                        <p class="font-bold text-xl text-red-600">6115972247</p>
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-gray-500 text-sm font-light">ATAS NAMA</p>
+                        <p class="font-bold text-xl color-primary">NOLES JEKI YEHUBEBYANAN</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes mt-8 p-4 bg-red-100 border border-red-400 rounded-lg text-sm text-red-800">
+                <p class="font-bold mb-2 flex items-center"><i class="fas fa-exclamation-circle mr-2"></i> Ketentuan Penting (Dibayarkan Klien):</p>
+                <ul class="list-disc ml-5 font-medium">
+                    <li>Harga Jasa di atas **BELUM TERMASUK** Biaya Retribusi PBG yang harus dibayarkan ke Pemerintah Daerah setempat.</li>
+                    <li>Biaya Retribusi Banjar Desa Adat Setempat juga **DITANGGUNG OLEH OWNER** (Klien).</li>
+                    <li>Kegagalan penerbitan SLF karena perubahan konstruksi lapangan pasca-PBG **bukan tanggung jawab kami**.</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
+            <p>Penawaran Dikeluarkan oleh **ENTITAS MAXIMA Pro** | Hak Cipta &copy; 2025</p>
+            <p class="mt-2 color-primary font-extrabold text-xl font-['Playfair_Display'] tracking-wider">"THE ANSWER STARTS HERE"</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript untuk fungsi Accordion -->
+    <script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const header = content.previousElementSibling;
+            
+            // Tutup atau buka elemen yang diklik
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                header.classList.remove('active');
+            } else {
+                // Tutup semua yang lain (agar hanya satu yang terbuka)
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    if (item.id !== id) {
+                        item.style.maxHeight = null;
+                        item.previousElementSibling.classList.remove('active');
+                    }
+                });
+
+                // Buka elemen yang diklik
+                content.style.maxHeight = content.scrollHeight + "px";
+                header.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
